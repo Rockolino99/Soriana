@@ -56,7 +56,7 @@
                     </td>
                     <td>
                         <div class="input-group mx-auto">
-                            <button class="btn btn-success"><i class="fas fa-save"></i></button>
+                            <button class="btn btn-success" title="Guardar"><i class="fas fa-save"></i></button>
                         </div>
                     </td>
                 </tr>
