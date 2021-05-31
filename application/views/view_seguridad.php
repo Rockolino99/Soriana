@@ -31,34 +31,36 @@
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td>
-                    <div class="input-group">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text" id="basic-addon2"><i class="fas fa-user"></i></span>
+            <?php for($i = 0; $i<5; $i++) { ?>
+                <tr>
+                    <td>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="basic-addon2"><i class="fas fa-user"></i></span>
+                            </div>
+                            <input type="text" class="form-control" placeholder="Nombre de usuario" aria-label="Nombre de usuario" aria-describedby="basic-addon2">
                         </div>
-                        <input type="text" class="form-control" placeholder="Nombre de usuario" aria-label="Nombre de usuario" aria-describedby="basic-addon2">
-                    </div>
-                </td>
-                <td>
-                    <div class="input-group">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text" id="basic-addon1"><i class="fas fa-lock"></i></span>
+                    </td>
+                    <td>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="basic-addon1"><i class="fas fa-lock"></i></span>
+                            </div>
+                            <input type="text" class="form-control" placeholder="Contraseña" aria-label="Contraseña" aria-describedby="basic-addon1">
                         </div>
-                        <input type="text" class="form-control" placeholder="Contraseña" aria-label="Contraseña" aria-describedby="basic-addon1">
-                    </div>
-                </td>
-                <td>
-                    <div class="input-group" style="height: 100%;">
-                        <span class="badge badge-danger"  style="height: 100%;">Cajero</span>
-                    </div>
-                </td>
-                <td>
-                    <div class="input-group mx-auto">
-                        <button class="btn btn-success"><i class="fas fa-save"></i></button>
-                    </div>
-                </td>
-            </tr>
+                    </td>
+                    <td>
+                        <div class="input-group" style="height: 100%;">
+                            <span class="badge badge-danger"  style="height: 100%;">Cajero</span>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="input-group mx-auto">
+                            <button class="btn btn-success"><i class="fas fa-save"></i></button>
+                        </div>
+                    </td>
+                </tr>
+            <?php } ?>
         </tbody>
     </table>
 </div>
