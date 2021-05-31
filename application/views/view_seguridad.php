@@ -1,3 +1,8 @@
+<?php
+    $tipos = ["Gerente","Segridad","Cajero +","Cajero"];
+    $colores = ["primary", "warning", "success", "danger"];
+?>
+
 <h2 class="text-center">SEGURIDAD</h2>
 
 <div class="container mt-5">
@@ -12,7 +17,7 @@
             </tr>
         </thead>
         <tbody>
-            <?php for($i = 0; $i<5; $i++) { ?>
+            <?php for($i = 0; $i<4; $i++) { ?>
                 <tr>
                     <td>
                         <div class="input-group">
@@ -32,7 +37,7 @@
                     </td>
                     <td>
                         <div class="input-group" style="height: 100%;">
-                            <span class="badge badge-danger"  style="height: 100%;">Cajero</span>
+                            <span class="badge badge-<?php echo $colores[$i]; ?>"  style="height: 100%;"><?php echo $tipos[$i]; ?></span>
                         </div>
                     </td>
                     <td>
@@ -44,5 +49,5 @@
             <?php } ?>
         </tbody>
     </table>
-    
+
 </div>
