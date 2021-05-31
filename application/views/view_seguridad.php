@@ -42,7 +42,7 @@
                     </td>
                     <td>
                         <div class="input-group mx-auto">
-                            <button class="btn btn-success" title="Guardar"><i class="fas fa-save"></i></button>
+                            <button class="btn btn-success" title="Guardar" onclick="hola()"><i class="fas fa-save"></i></button>
                         </div>
                     </td>
                 </tr>
@@ -51,3 +51,10 @@
     </table>
 
 </div>
+
+
+<script>
+    function hola() {
+        alertify.success("xD")
+    }
+</script>

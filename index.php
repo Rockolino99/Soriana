@@ -58,7 +58,7 @@
 		    <span>Ocultar</span>
 		  </a>
 		  <div class="logo">
-		    
+		    soriana
 		  </div>
 		</div>
 		<div class="sidebar">
