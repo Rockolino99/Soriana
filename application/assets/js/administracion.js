@@ -72,6 +72,9 @@ function validateUser() {
 		success: (res) => {
 			if(res) {
 				alertify.success("Usuario registrado correctamente")
+				$(nombre).val('')
+				$(username).val('')
+				$('#selectArea').val(0)
 			} else
 				alertify.error("Algo salió mal, intente de nuevo")
 		}
