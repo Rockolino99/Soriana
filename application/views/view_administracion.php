@@ -20,7 +20,7 @@
                         </div>
                         <div class="form-group">
                             <label for="username">Usuario</label>
-                            <input type="text" class="form-control" id="username" placeholder="Usuario">
+                            <input type="text" class="form-control" id="username" placeholder="Usuario" onkeyup="toLowerCase(this)">
                         </div>
                         <div class="form-group">
                             <label for="selectArea">Área</label>
@@ -28,7 +28,7 @@
                                 <option value="0" disabled selected>Seleccione</option>
                             </select>
                         </div>
-                        <button type="submit" class="btn btn-primary">Guardar</button>
+                        <button type="button" class="btn btn-primary" onclick="validateUser()">Guardar</button>
                     </form>
                 </section>
             </div>
