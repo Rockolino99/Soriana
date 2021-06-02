@@ -3,9 +3,9 @@
 <div class="wrap">
 
     <ul class="tabs group">
-        <li><a class="active" href="#one">Light &</a></li>
-        <li><a href="#two">Sexy</a></li>
-        <li><a href="#three">Tabs</a></li>
+        <li><a class="active" href="#/one">Usuarios</a></li>
+        <li><a href="#/two">Nuevo usuario</a></li>
+        <li><a href="#/three">Tabs</a></li>
     </ul>
 
     <div id="content">
@@ -27,10 +27,8 @@
                 <button type="submit" class="btn btn-primary">Submit</button>
             </form>
         </section>
-        <section id="two" style="display: none;">Sexy sexy consectetur adipisicing elit. Pariatur modi quod quo iure recusandae eligendi q.t, consectetur adipisicing elit. Pariatur modi quod quo iureq</section>
-        <section id="three" style="display: none;">Tabs , consectetur adipisicing elit. Pariatur modi quod quo iure recusandae eligendi q.t, consectetur adipisicing elit. Pariatur modi quod quo iureq
-            Tabs , consectetur adipisicing elit. Pariatur modi quod quo iure recusandae eligendi q.t, consectetur adipisicing elit. Pariatur modi quod quo iureq
-            Tabs , consectetur adipisicing elit. Pariatur modi quod quo iure recusandae eligendi q.t, consectetur adipisicing elit. Pariatur modi quod quo iureq</section>
+        <section id="two" style="display: none;">alta de usuarios xd</section>
+        <section id="three" style="display: none;">npi</section>
     </div>
 
 </div>

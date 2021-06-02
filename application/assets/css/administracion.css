@@ -8,7 +8,7 @@ body {
     width: 60%;
 }
 ul.tabs {
-    width: 390px;
+    width: 100%;
     height: 80px;
     margin: 0;
     list-style: none;
@@ -17,7 +17,7 @@ ul.tabs {
 }
 ul.tabs li {
     float: left;
-    width: 130px;
+    width: 150px;
 }
 ul.tabs li a {
     position: relative;
