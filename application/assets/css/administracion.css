@@ -5,9 +5,9 @@ body {
 }
 .wrap {
     margin: 0 auto;
-    width: 60%;
+    
 }
-ul.tabs {
+ul.tabs, ul.tabs2 {
     width: 100%;
     height: 80px;
     margin: 0;
@@ -15,11 +15,11 @@ ul.tabs {
     overflow: hidden;
     padding: 0;
 }
-ul.tabs li {
+ul.tabs li, ul.tabs2 li {
     float: left;
     width: 150px;
 }
-ul.tabs li a {
+ul.tabs li a, ul.tabs2 li a {
     position: relative;
     display: block;
     height: 50px;
@@ -41,16 +41,16 @@ ul.tabs li a {
     -ms-transition: padding 0.2s ease, margin 0.2s ease;
     transition: padding 0.2s ease, margin 0.2s ease;
 }
-.tabs li:first-child a {
+.tabs li:first-child a, .tabs2 li:first-child a {
     z-index: 3;
     -webkit-border-top-left-radius: 8px;
     -moz-border-radius-topleft: 8px;
     border-top-left-radius: 8px;
 }
-.tabs li:nth-child(2) a {
+.tabs li:nth-child(2) a, .tabs2 li:nth-child(2) a {
     z-index: 2;
 }
-.tabs li:last-child a {
+.tabs li:last-child a, .tabs2 li:last-child a {
     z-index: 1;
     -webkit-box-shadow: 2px 8px 25px -2px rgba(0, 0, 0, 0.3);
     -moz-box-shadow: 2px 8px 25px -2px rgba(0, 0, 0, 0.3);
@@ -59,11 +59,11 @@ ul.tabs li a {
     -moz-border-radius-topright: 8px;
     border-top-right-radius: 8px;
 }
-ul.tabs li a:hover {
+ul.tabs li a:hover, ul.tabs2 li a:hover {
     margin: 35px 0 0 0;
     padding: 10px 0 5px 0;
 }
-ul.tabs li a.active {
+ul.tabs li a.active, ul.tabs2 li a.active {
     margin: 30px 0 0 0;
     padding: 10px 0 10px 0;
     background: #861812;
@@ -79,7 +79,7 @@ ul.tabs li a.active {
 .group:after {
     clear: both;
 }
-#content {
+#content, #content2 {
     width: 100%;
     height: auto;
     margin: 0 auto;
@@ -106,4 +106,9 @@ section {
 #two {
 }
 #three {
+}
+
+h3 {
+    text-transform: uppercase;
+    font-family: "Open Sans", sans-serif;
 }

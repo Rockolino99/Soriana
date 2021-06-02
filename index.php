@@ -3,7 +3,7 @@
 
 	<head>
 		<title>SORIANA</title>
-		<link rel="shortcut icon" href="application/assets/img/icons/favicon.png" type="image/x-icon">
+		<link rel="shortcut icon" href="application/assets/img/icons/favicon.ico" type="image/x-icon">
 		<meta charset='utf-8' />
 	</head>
 
