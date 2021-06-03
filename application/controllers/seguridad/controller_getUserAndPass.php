@@ -64,6 +64,22 @@ function validateUsers(id, nombre) {
     if(pass.val() == "") {
         alertify.error("Por favor, ingrese una contraseña para " + $('#nombre'+id).val())
         pass.focus()
+        return
     }
+
+    $.ajax({
+        type: 'post',
+        data: {
+            idUsuario: id,
+            pass: pass.val()
+        },
+        url: 'application/controllers/seguridad/controller_setPass.php',
+        success: res => {
+            if(res == '1')
+                alertify.success('Contaseña cambiada exitosamente')
+            else
+                alertify.error('Algo saló mal, intente de nuevo')
+        }
+    })
 }
 </script>
