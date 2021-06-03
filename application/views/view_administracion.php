@@ -9,8 +9,9 @@
             </ul>
 
             <div id="content">
-                <section id="one"><!--Lista-->
-                    lista de usuarios
+                <section id="one"><!--Lista de usuarios-->
+                <div class="list-group" id="usersList">
+                </div>
                 </section>
                 <section id="two" style="display: none;"><!--Nuevo-->
                     <form>

@@ -23,6 +23,7 @@
 
 $(document).ready(() => {
 	getAreas()
+	getUsersList()
 })
 
 function getAreas() {
@@ -75,6 +76,7 @@ function validateUser() {
 				$(nombre).val('')
 				$(username).val('')
 				$('#selectArea').val(0)
+				getUsersList()
 			} else
 				alertify.error("Algo salió mal, intente de nuevo")
 		}
@@ -83,4 +85,34 @@ function validateUser() {
 
 function toLowerCase(username) {
 	$(username).val($(username).val().toLowerCase())
+}
+
+function getUsersList() {
+	$.ajax({
+		url: 'application/controllers/administracion/controller_getUsersList.php',
+		success: function(data) {
+			$('#usersList').empty()
+			$('#usersList').append(data)
+		}
+	})
+}
+
+function dropUser(i) {
+	alertify.confirm('Eliminar usuario', '¿Desea eliminar a ' + $('#user' + i).text() + '?',
+	function() {//Yes
+		$.ajax({
+			type: 'post',
+			data: {idUsuario: i},
+			url: 'application/controllers/administracion/controller_dropUser.php',
+			success: function(data) {
+				if(data == '1') {
+					alertify.success("Eliminación exitosa")
+					getUsersList()
+				} else
+					alertify.error("Algo salió mal, intente de nuevo")
+			}
+		})
+	}, function(){
+		//Nel
+	});
 }
