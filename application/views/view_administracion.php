@@ -49,15 +49,30 @@
                 <section id="two2" style="display: none;"><!--Lista-->
                     <form>
                         <div class="form-group">
-                            <label for="exampleInputEmail1">Email address</label>
-                            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
-                            <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                            <label for="nombreProducto">Nombre</label>
+                            <input type="text" class="form-control" id="nombreProducto" placeholder="Nombre">
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <div class="form-group">
+                                    <label for="precioProducto">Precio</label>
+                                    <input type="number" class="form-control" id="precioProducto" placeholder="Precio">
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="form-group">
+                                    <label for="cantidadProducto">Cantidad</label>
+                                    <input type="number" class="form-control" id="cantidadProducto" placeholder="Cantidad">
+                                </div>
+                            </div>
                         </div>
                         <div class="form-group">
-                            <label for="exampleInputPassword1">Password</label>
-                            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                            <label for="selectProveedor">Proveedor</label>
+                            <select type="text" class="form-control" id="selectProveedor">
+                                <option value="0" disabled selected>Seleccione</option>
+                            </select>
                         </div>
-                        <button type="submit" class="btn btn-primary">Submit</button>
+                        <button type="button" class="btn btn-primary">Submit</button>
                     </form>
                 </section>
             </div>
