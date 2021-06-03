@@ -27,7 +27,7 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) { ?>
         <td>
             <div class="input-group">
                 <div class="input-group-prepend">
-                    <span class="input-group-text" id="basic-addon2"><i class="fas fa-user"></i></span>
+                    <span class="input-group-text" id="basic-addon2"><i class="far fa-user"></i></span>
                 </div>
                 <input id="user<?echo $i+1;?>" type="text" class="form-control" placeholder="Usuario"
                     aria-label="Usuario" aria-describedby="basic-addon2" value="<?php echo $row['user']; ?>" disabled>
