@@ -43,9 +43,8 @@ class Inventario {
         $query = "INSERT INTO supermarket.inventario
                   SET nombre = :nombre,
                       precio = :precio,
-                      cantidad = :cantidad
-                      idProveedor = :idProveedor,
-                      ";
+                      cantidad = :cantidad,
+                      idProveedor = :idProveedor";
         
         $stmt = $this->conn->prepare($query);
         

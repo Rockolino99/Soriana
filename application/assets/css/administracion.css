@@ -116,3 +116,7 @@ h3 {
 section#one2 {
     font-size: 12px;
 }
+
+#table_listaInventario {
+    width: auto;
+}

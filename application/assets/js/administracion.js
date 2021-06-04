@@ -7,16 +7,20 @@
 		var content = this.hash.replace('/','');
 		tabs.removeClass("active");
 		$(this).addClass("active");
-    $("#content").find('section').hide();
-    $(content).fadeIn(200);
+		$("#content").find('section').hide();
+		$(content).fadeIn(200);
 	});
 
 	tabs2.click(function() {
+		if($(this).parent().attr('id') != 'editTab' && $('#editTab a').hasClass('active')) {
+			$('#editTab').toggleClass('d-none')
+		}
+		
 		var content = this.hash.replace('/','');
 		tabs2.removeClass("active");
 		$(this).addClass("active");
-    $("#content2").find('section').hide();
-    $(content).fadeIn(200);
+		$("#content2").find('section').hide();
+		$(content).fadeIn(200);
 	});
 
 })(jQuery);
@@ -182,7 +186,9 @@ function verTabla() {
 function getDataEditar(tbody, table) {
 	$(tbody).on('click', '#editBtn', function () {//Editar
 		var data = table.row($(this).parents('tr')).data()
-		alert(data.idInventario)
+
+		$('#editTab').toggleClass('d-none')
+		$('#editTab a').click()
 	})
 }
 
@@ -280,13 +286,17 @@ $('#newInventarioBtn').on('click', function() {
 		},
 		url: 'application/controllers/administracion/controller_newProducto.php',
 		success: (res) => {
-			if(res) {
+			if(res == '1') {
 				alertify.success("Producto registrado correctamente")
 				$(nombre).val('')
 				$(precio).val('')
 				$(cantidad).val('')
 				$('#selectProveedor').val(0)
-				verTabla()
+				$("#table_listaInventario").dataTable().fnDestroy();
+				document.getElementById('table_listaInventario').removeChild(document.getElementById('table_listaInventario').lastChild)
+				setTimeout(() => {
+					verTabla()
+				}, 1200)
 			} else
 				alertify.error("Algo salió mal, intente de nuevo")
 		}

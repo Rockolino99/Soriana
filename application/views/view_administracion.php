@@ -40,7 +40,7 @@
             <ul class="tabs2 group">
                 <li style="width: 25%;"><a class="active" href="#/one2">Lista</a></li>
                 <li style="width: 25%;"><a href="#/two2">Nuevo</a></li>
-                <li style="width: 25%;"><a href="#/three2">Editar</a></li>
+                <li id="editTab" style="width: 25%;" class="d-none"><a href="#/three2">Editar</a></li>
                 <li style="width: 25%;"><a href="#/four2">Proveedores</a></li>
             </ul>
 
