@@ -178,6 +178,7 @@ function verTabla() {
 			"url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json"
 		}
 	})
+	$("#table_listaInventario").css('width', '100%')
 	getDataEditar("#table_listaInventario tbody", table)
 	//this.getDataEliminar("#table_listaInventario tbody", table)
 }
