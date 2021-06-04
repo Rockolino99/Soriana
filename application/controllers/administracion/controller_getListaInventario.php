@@ -1,4 +1,4 @@
-<?
+<?php
 include_once '../../connection/connection_bd.php';
 include_once '../../models/object_inventario.php';
 
@@ -9,7 +9,7 @@ $inventario = new Inventario($db);
 
 $stmt = $inventario->getInventario();
 
-//$arreglo['data'][] = "";
+//$arreglo['data'] = "";
 
 while($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
 

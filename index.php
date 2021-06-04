@@ -28,8 +28,8 @@
 		<script src="https://kit.fontawesome.com/f8978717f6.js" crossorigin="anonymous"></script>
 
   		<!-- DataTable JS -->
-  		<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.css">
-  		<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.js"></script>
+  		<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.css">
+  		<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.js"></script>
 
   		<!-- Vue JS -->
 		<script src="https://cdn.jsdelivr.net/npm/vue@2"></script>

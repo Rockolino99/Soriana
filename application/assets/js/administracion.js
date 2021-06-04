@@ -144,7 +144,6 @@ function verTabla() {
 
 	var table = $('#table_listaInventario').DataTable({
 		"ajax": {
-			"method": "POST",
 			"url": "application/controllers/administracion/controller_getListaInventario.php"
 		},
 		"columns": [
