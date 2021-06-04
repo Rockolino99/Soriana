@@ -38,15 +38,27 @@
         <div class="wrap col">
             <h3 class="text-center mt-3">Productos</h3>
             <ul class="tabs2 group">
-                <!-- <li><a class="active" href="#/one2">Lista</a></li> -->
-                <li><a class="active" href="#/two2">Lista</a></li>
+                <li style="width: 25%;"><a class="active" href="#/one2">Lista</a></li>
+                <li style="width: 25%;"><a href="#/two2">Nuevo</a></li>
+                <li style="width: 25%;"><a href="#/three2">Editar</a></li>
+                <li style="width: 25%;"><a href="#/four2">Proveedores</a></li>
             </ul>
 
-            <div id="content2"><!--Lista-->
-                <!-- <section id="one2">
-                    lista de productos xd
-                </section> -->
-                <section id="two2"><!--Lista-->
+            <div id="content2">
+                <section id="one2"><!--Lista-->
+                    <table id="table_listaInventario" class="display">
+                        <thead>
+                            <tr>
+                                <th>Nombre</th>
+                                <th>Precio</th>
+                                <th>Existencia</th>
+                                <th>Proveedor</th>
+                                <th>Opciones</th>
+                            </tr>
+                        </thead>
+                    </table>
+                </section>
+                <section id="two2" style="display: none;"><!--Nuevo-->
                     <form>
                         <div class="form-group">
                             <label for="nombreProducto">Nombre</label>
@@ -69,11 +81,20 @@
                         <div class="form-group">
                             <label for="selectProveedor">Proveedor</label>
                             <select type="text" class="form-control" id="selectProveedor">
-                                <option value="0" disabled selected>Seleccione</option>
                             </select>
                         </div>
-                        <button type="button" class="btn btn-primary">Submit</button>
+                        <button type="button" class="btn btn-primary" id="newInventarioBtn">Agregar</button>
                     </form>
+                </section>
+                <section id="three2" style="display: none;"><!--Edicion-->
+                    <h1>Edicion</h1>
+                </section>
+                <section id="four2" style="display: none;"> <!--Proveedores-->
+                    <div class="form-group">
+                        <label for="newProveedor">Nuevo proveedor</label>
+                        <input type="text" class="form-control" id="newProveedor" placeholder="Nombre">
+                    </div>
+                    <button type="button" id="validateProveedor" class="btn btn-primary">Agregar</button>
                 </section>
             </div>
 
