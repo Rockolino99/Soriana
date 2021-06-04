@@ -20,7 +20,8 @@ class Inventario {
 
         $stmt = $this->conn->prepare($query);
 
-        return $stmt->execute() ? $stmt : 0;
+        $stmt->execute();
+        return $stmt;
     }
 
     /*function setPass() {
