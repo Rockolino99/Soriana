@@ -113,6 +113,6 @@ function dropUser(i) {
 			}
 		})
 	}, function(){
-		//Nel
+		//Nel >:v
 	});
 }
