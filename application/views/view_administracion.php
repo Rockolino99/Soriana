@@ -38,15 +38,15 @@
         <div class="wrap col">
             <h3 class="text-center mt-3">Productos</h3>
             <ul class="tabs2 group">
-                <li><a class="active" href="#/one2">Lista</a></li>
-                <li><a href="#/two2">Nuevo</a></li>
+                <!-- <li><a class="active" href="#/one2">Lista</a></li> -->
+                <li><a class="active" href="#/two2">Lista</a></li>
             </ul>
 
             <div id="content2"><!--Lista-->
-                <section id="one2">
+                <!-- <section id="one2">
                     lista de productos xd
-                </section>
-                <section id="two2" style="display: none;"><!--Lista-->
+                </section> -->
+                <section id="two2"><!--Lista-->
                     <form>
                         <div class="form-group">
                             <label for="nombreProducto">Nombre</label>
