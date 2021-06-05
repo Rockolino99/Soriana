@@ -38,7 +38,7 @@
         <div class="wrap col">
             <h3 class="text-center mt-3">Productos</h3>
             <ul class="tabs2 group">
-                <li style="width: 25%;"><a class="active" href="#/one2">Lista</a></li>
+                <li style="width: 25%;"><a class="active" href="#/one2" id="listMain">Lista</a></li>
                 <li style="width: 25%;"><a href="#/two2">Nuevo</a></li>
                 <li id="editTab" style="width: 25%;" class="d-none"><a href="#/three2">Editar</a></li>
                 <li style="width: 25%;"><a href="#/four2">Proveedores</a></li>
@@ -87,7 +87,32 @@
                     </form>
                 </section>
                 <section id="three2" style="display: none;"><!--Edicion-->
-                    <h1>Edicion</h1>
+                    <form>
+                        <div class="form-group">
+                            <label for="nombreEdit">Nombre</label>
+                            <input type="text" class="form-control" id="nombreEdit" placeholder="Nombre">
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <div class="form-group">
+                                    <label for="precioEdit">Precio</label>
+                                    <input type="number" class="form-control" id="precioEdit" placeholder="Precio">
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="form-group">
+                                    <label for="cantidadEdit">Cantidad</label>
+                                    <input type="number" class="form-control" id="cantidadEdit" placeholder="Cantidad">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="selectEdit">Proveedor</label>
+                            <select type="text" class="form-control" id="selectEdit">
+                            </select>
+                        </div>
+                        <button type="button" class="btn btn-primary" id="editarBtn">Agregar</button>
+                    </form>
                 </section>
                 <section id="four2" style="display: none;"> <!--Proveedores-->
                     <div class="form-group">

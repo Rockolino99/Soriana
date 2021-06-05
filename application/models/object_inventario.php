@@ -4,6 +4,7 @@ class Inventario {
 
     private $conn;
 
+    public $idInventario;
     public $nombre;
     public $cantidad;
     public $precio;
@@ -24,21 +25,30 @@ class Inventario {
         return $stmt;
     }
 
-    /*function setPass() {
-        $query = "UPDATE supermarket.usuario
-                  SET pass = :pass
-                  WHERE idUsuario = :idUsuario";
+    function updateInventario() {
+        $query = "UPDATE supermarket.inventario
+                  SET nombre = :nombre,
+                      precio = :precio,
+                      cantidad = :cantidad,
+                      idProveedor = :idProveedor
+                  WHERE idInventario = :idInventario";
         
         $stmt = $this->conn->prepare($query);
         
-        $this->pass = htmlspecialchars(strip_tags($this->pass));
-        $this->idUsuario = htmlspecialchars(strip_tags($this->idUsuario));
+        $this->idInventario = htmlspecialchars(strip_tags($this->idInventario));
+        $this->nombre = htmlspecialchars(strip_tags($this->nombre));
+        $this->precio = htmlspecialchars(strip_tags($this->precio));
+        $this->cantidad = htmlspecialchars(strip_tags($this->cantidad));
+        $this->idProveedor = htmlspecialchars(strip_tags($this->idProveedor));
         
-        $stmt->bindParam(":pass", $this->pass);
-        $stmt->bindParam(":idUsuario", $this->idUsuario);
+        $stmt->bindParam(":idInventario", $this->idInventario);
+        $stmt->bindParam(":nombre", $this->nombre);
+        $stmt->bindParam(":precio", $this->precio);
+        $stmt->bindParam(":cantidad", $this->cantidad);
+        $stmt->bindParam(":idProveedor", $this->idProveedor);
 
         return $stmt->execute() ? 1 : 0;
-    }*/
+    }
 
     function addInventario() {
         $query = "INSERT INTO supermarket.inventario
@@ -58,6 +68,19 @@ class Inventario {
         $stmt->bindParam(":precio", $this->precio);
         $stmt->bindParam(":cantidad", $this->cantidad);
         $stmt->bindParam(":idProveedor", $this->idProveedor);
+
+        return $stmt->execute() ? 1 : 0;
+    }
+
+    function deleteInventario() {
+        $query = "DELETE FROM supermarket.inventario
+                    WHERE idInventario = :idInventario";
+
+        $stmt = $this->conn->prepare($query);
+                
+        $this->idInventario = htmlspecialchars(strip_tags($this->idInventario));
+
+        $stmt->bindParam(":idInventario", $this->idInventario);
 
         return $stmt->execute() ? 1 : 0;
     }
