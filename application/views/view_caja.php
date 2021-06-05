@@ -14,6 +14,7 @@
                                 <th>Cantidad</th>
                                 <th>Precio</th>
                                 <th>Proveedor</th>
+                                <th style="width: 90px;">Piezas</th>
                                 <th>Opciones</th>
                             </tr>
                         </thead>
@@ -27,5 +28,6 @@
         </div>
     </div>
 </div>
+
 
 <script src="application/assets/js/caja.js"></script>
