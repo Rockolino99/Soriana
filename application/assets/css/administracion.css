@@ -144,3 +144,7 @@ section#one2 {
 #table_listaInventario {
     width: 100%;
 }
+
+span > i {
+    color: #dd271d;
+}
