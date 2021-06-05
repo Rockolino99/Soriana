@@ -1,0 +1,24 @@
+.wrap {
+    margin: 0 auto;
+}
+
+h3 {
+    text-transform: uppercase;
+    font-family: "Open Sans", sans-serif;
+}
+
+section {
+    font-family: "Open Sans", sans-serif;
+    padding: 30px 40px;
+    color: #000000;
+    line-height: 26px;
+    font-size: 18px;
+}
+
+section#one {
+    font-size: 12px;
+}
+
+#table_listaProductos {
+    width: 100%;
+}
