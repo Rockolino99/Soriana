@@ -31,7 +31,7 @@ function verTabla() {
             {
                 "defaultContent": "<div style='display: flex; flex-wrap: no-wrap; justify-content: center;'>" +
                     "<span data-toggle='tooltip' data-placement='top' title='Agregar'" + //Agregar
-                    "<i class='fas fa-shopping-cart' id='AgregarBtn' style='cursor: pointer; padding: 3px; font-size: 20px;'></i>" +
+                    "<i class='fas fa-shopping-cart' id='agregarBtn' style='cursor: pointer; padding: 3px; font-size: 20px;'></i>" +
                     "</span>" + "</div>"
             }
         ],
@@ -96,18 +96,19 @@ function getDataProductos(tbody, table) {
     })
 }
 
-function getDataAgregarCarrito(tbody, table){
-    $(tbody).on('click', '#AgregarBtn', function () {//Agregar Cart
-        alert(":v") 
-		var data = table.row($(this).parents('tr')).data()
-		//Agregar carrito
-		$('#nombreAgregar').val(data.nombre)
-		$('#precioAgregar').val(data.precio)
-		$('#cantidadAgregar').val(data.cantidad)
-		$('#selectAgregar').val(data.idProveedor)
+function getDataAgregarCarrito(tbody, table) {
+    $(tbody).on('click', '#agregarBtn', function () { //Agregar Cart
+        var data = table.row($(this).parents('tr')).data()
+        alert(":v")
 
-		idInventario = data.idInventario
-	})
+        //Agregar carrito
+        $('#nombreAgregar').val(data.nombre)
+        $('#precioAgregar').val(data.precio)
+        $('#cantidadAgregar').val(data.cantidad)
+        $('#selectAgregar').val(data.idProveedor)
+
+        idInventario = data.idInventario
+    })
 }
 
 function updateCarrito() { //#carrito
@@ -131,7 +132,6 @@ function verCarrito() {
     })
 }
 
-$('#AgregarBtn').on('click', function () {
-    //alert(":v")
-   alert("hola mundo xD")
+$('#agregarBtn').on('click', function () {
+    alert("hola mundo xD")
 })
