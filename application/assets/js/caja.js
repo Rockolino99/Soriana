@@ -78,7 +78,7 @@ function getDataProductos(tbody, table) {
                 buttons: false,
                 timer: 2000
             })
-            $(this).val(data.cantidad) //$(this).val() = data.cantidad
+            $(this).val(data.cantidad)
             return
         }
 
@@ -96,12 +96,10 @@ function getDataProductos(tbody, table) {
     })
 }
 
-function getDataProductos(tbody, table){
-    
-    $(tbody).on('click', '#AgregarBtn', function () {//Agregar Cart
-        alert(":v") 
+function getDataAgregarCarrito(tbody, table){
+    $(tbody).on('click', '#AgregarBtn', function () {  //Agregar Cart
 		var data = table.row($(this).parents('tr')).data()
-
+        alert(":v") 
 		//Agregar carrito
 		$('#nombreAgregar').val(data.nombre)
 		$('#precioAgregar').val(data.precio)
@@ -134,6 +132,6 @@ function verCarrito() {
 }
 
 $('#AgregarBtn').on('click', function () {
-    alert(":v")
-   
+    //alert(":v")
+   alert("hola mundo xD")
 })
