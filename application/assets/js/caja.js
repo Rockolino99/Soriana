@@ -68,7 +68,7 @@ function verTabla() {
                 "data": "nomProveedor"
             },
             {
-                "defaultContent": "<input type='number' class='form-controls' value='0' min='0' id='cantidadVP' style='width:70px;' required)'>"
+                "defaultContent": "<input type='number' class='form-controls' value='0' min='0' id='cantidadVP' style='width:70px;' required>"
             },
             {
                 "defaultContent": "<div style='display: flex; flex-wrap: no-wrap; justify-content: center;'>" +
