@@ -97,9 +97,9 @@ function getDataProductos(tbody, table) {
 }
 
 function getDataAgregarCarrito(tbody, table){
-    $(tbody).on('click', '#AgregarBtn', function () {  //Agregar Cart
-		var data = table.row($(this).parents('tr')).data()
+    $(tbody).on('click', '#AgregarBtn', function () {//Agregar Cart
         alert(":v") 
+		var data = table.row($(this).parents('tr')).data()
 		//Agregar carrito
 		$('#nombreAgregar').val(data.nombre)
 		$('#precioAgregar').val(data.precio)
