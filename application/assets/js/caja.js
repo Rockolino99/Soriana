@@ -77,7 +77,7 @@ function getDataProductos(tbody, table) {
                 buttons: false,
                 timer: 2000
             })
-            $(this).val() = data.cantidad
+            $(this).val(data.cantidad) //$(this).val() = data.cantidad
             return
         }
 
