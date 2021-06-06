@@ -6,7 +6,6 @@ $(document).ready(() => {
 })
 
 function validaCantidad(elemento,cantidad, existencia){
-    
     if(existencia == 0) {
         swal({
             icon: 'info',
@@ -73,8 +72,8 @@ function verTabla() {
             },
             {
                 "defaultContent": "<div style='display: flex; flex-wrap: no-wrap; justify-content: center;'>" +
-                    "<span data-toggle='tooltip' data-placement='top' title='Agragar'>" + //Agregar
-                    "<i class='fas fa-shopping-cart' id='editBtn' style='cursor: pointer; padding: 3px; font-size: 20px;'></i>" +
+                    "<span data-toggle='tooltip' data-placement='top' title='Agragar'" + //Agregar
+                    "<i class='fas fa-shopping-cart' id='AgregarBtn' style='cursor: pointer; padding: 3px; font-size: 20px;'></i>" +
                     "</span>" + "</div>"
             }
         ],
@@ -86,4 +85,51 @@ function verTabla() {
     //getDataEditar("#table_listaInventario tbody", table)
 }
 
+function updateCarrito() { //#carrito
+    $.ajax({
+        url: 'application/controllers/caja/controller_getNumCart.php',
+        success: function(value) {
+            $('#carrito').empty()
+            $('#carrito').append(" " + value)
+        }
+    })
+}
+
+function verCarrito() {
+    //bodyCarrito
+    $.ajax({
+        url: 'application/controllers/caja/controller_getCart.php',
+        success: function(res) {
+            $('#carrito').empty()
+            $('#carrito').append(res)
+        }
+    })
+}
+
+$('#AgregarBtn').on('click', function () {
+	$.ajax({
+		type: 'post',
+		data: {
+			idInventario: idInventario,
+			nombre: nombre.val(),
+			cantidad: cantidad.val(),
+			precio: precio.val(),
+            piezas: piezas.val(),
+			idProveedor: proveedor.val()
+		},
+		url: 'application/controllers/administracion/controller_addToCart.php',
+		success: (res) => {
+			if (res == '1') {
+				alertify.success("Producto añadido correctamente al carrito")
+				$("#table_listaProductos").dataTable().fnDestroy();
+				document.getElementById('table_listaProductos').removeChild(document.getElementById('table_listaProductos').lastChild)
+				setTimeout(() => {
+                    verCarrito()
+					updateCarrito()
+				}, 1200)
+			} else
+				alertify.error("Algo salió mal, intente de nuevo")
+		}
+	})
+})
 
