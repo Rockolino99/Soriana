@@ -1,6 +1,6 @@
 <?php
 include_once '../../connection/Object_Connection.php';
-include_once '../../models/Object_Carrito.php';
+include_once '../../models/object_Carrito.php';
 
 $database = new Database();
 $db = $database->getConnection();

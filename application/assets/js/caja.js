@@ -30,7 +30,7 @@ function verTabla() {
             },
             {
                 "defaultContent": "<div style='display: flex; flex-wrap: no-wrap; justify-content: center;'>" +
-                    "<span data-toggle='tooltip' data-placement='top' title='Agragar'" + //Agregar
+                    "<span data-toggle='tooltip' data-placement='top' title='Agregar'" + //Agregar
                     "<i class='fas fa-shopping-cart' id='AgregarBtn' style='cursor: pointer; padding: 3px; font-size: 20px;'></i>" +
                     "</span>" + "</div>"
             }
@@ -42,6 +42,7 @@ function verTabla() {
     $("#table_listaProductos").css('width', '100%')
 
     getDataProductos("#table_listaProductos tbody", table)
+    getDataAgregarCarrito("#table_listaProductos tbody", table)
 }
 
 function getDataProductos(tbody, table) {
@@ -95,6 +96,22 @@ function getDataProductos(tbody, table) {
     })
 }
 
+function getDataProductos(tbody, table){
+    
+    $(tbody).on('click', '#AgregarBtn', function () {//Agregar Cart
+        alert(":v") 
+		var data = table.row($(this).parents('tr')).data()
+
+		//Agregar carrito
+		$('#nombreAgregar').val(data.nombre)
+		$('#precioAgregar').val(data.precio)
+		$('#cantidadAgregar').val(data.cantidad)
+		$('#selectAgregar').val(data.idProveedor)
+
+		idInventario = data.idInventario
+	})
+}
+
 function updateCarrito() { //#carrito
     $.ajax({
         url: 'application/controllers/caja/controller_getNumCart.php',
@@ -117,28 +134,6 @@ function verCarrito() {
 }
 
 $('#AgregarBtn').on('click', function () {
-    $.ajax({
-        type: 'post',
-        data: {
-            idInventario: idInventario,
-            nombre: nombre.val(),
-            cantidad: cantidad.val(),
-            precio: precio.val(),
-            piezas: piezas.val(),
-            idProveedor: proveedor.val()
-        },
-        url: 'application/controllers/administracion/controller_addToCart.php',
-        success: (res) => {
-            if (res == '1') {
-                alertify.success("Producto añadido correctamente al carrito")
-                $("#table_listaProductos").dataTable().fnDestroy();
-                document.getElementById('table_listaProductos').removeChild(document.getElementById('table_listaProductos').lastChild)
-                setTimeout(() => {
-                    verCarrito()
-                    updateCarrito()
-                }, 1200)
-            } else
-                alertify.error("Algo salió mal, intente de nuevo")
-        }
-    })
+    alert(":v")
+   
 })
