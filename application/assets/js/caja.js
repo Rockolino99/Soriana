@@ -68,12 +68,12 @@ function verTabla() {
                 "data": "nomProveedor"
             },
             {
-                "defaultContent": "<input type='number' class='form-controls' value='<?php echo $row[cantidad]>0? 1 : 0 ?> id='cantidadVP' style='width:70px;' required onchange='validaCantidad(this, $(this).val(),<?php echo $row[cantidad]; ?>)' onkeyup='validaCantidad(this, $(this).val(),<?php echo $row[cantidad]; ?>)'>"
+                "defaultContent": "<input type='number' class='form-controls' value='0' min='0' id='cantidadVP' style='width:70px;' required)'>"
             },
             {
                 "defaultContent": "<div style='display: flex; flex-wrap: no-wrap; justify-content: center;'>" +
                     "<span data-toggle='tooltip' data-placement='top' title='Agragar'" + //Agregar
-                    "<i class='fas fa-shopping-cart' id='AgregarBtn' style='cursor: pointer; padding: 3px; font-size: 20px;'></i>" +
+                        "<i class='fas fa-shopping-cart' id='AgregarBtn' style='cursor: pointer; padding: 3px; font-size: 20px;'></i>" +
                     "</span>" + "</div>"
             }
         ],
@@ -82,7 +82,15 @@ function verTabla() {
         }
     })
     $("#table_listaProductos").css('width', '100%')
-    //getDataEditar("#table_listaInventario tbody", table)
+    
+    getDataProductos("#table_listaProductos tbody", table)
+}
+
+function getDataProductos(tbody, table) {
+    $(tbody).on('change', '#cantidadVP', function () { //Editar
+		var data = table.row($(this).parents('tr')).data()
+        alert("Actual:" + $(this).val() + ", max: " + data.cantidad)
+    })
 }
 
 function updateCarrito() { //#carrito
