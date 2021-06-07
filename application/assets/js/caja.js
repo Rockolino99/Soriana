@@ -49,7 +49,6 @@ function getDataProductos(tbody, table) {
     $(tbody).on('change', '#cantidadVP', function () { //Editar
         var data = table.row($(this).parents('tr')).data()
         //alert("Actual:" + $(this).val() + ", max: " + data.cantidad)
-
         if (parseInt(data.cantidad) == 0) {
             swal({
                 icon: 'info',
@@ -106,37 +105,35 @@ function getDataAgregarCarrito(tbody, table) {
         var cantidad = $(this).parents('td').siblings()[5].children[0].value
         alert(cantidad)
         //Agregar carrito
+        var carrito = {
+            data: data,
+            piezas: cantidad
+        }
+        //console.log(carrito)
+        //Datos se van al localStorage
+        localStorage.setItem('carrito', JSON.stringify(carrito));
 
-        $('#nombreAgregar').val(data.nombre)
-        $('#precioAgregar').val(data.precio)
-        $('#cantidadAgregar').val(data.cantidad)
-        $('#selectAgregar').val(data.idProveedor)
-
-        idInventario = data.idInventario
     })
 }
 
-function updateCarrito() { //#carrito
+function getCarrito(){
+    var carrito = localStorage.getItem('carrito');
+    carrito = JSON.parse(carrito)
+
     $.ajax({
-        url: 'application/controllers/caja/controller_getNumCart.php',
-        success: function (value) {
-            $('#carrito').empty()
-            $('#carrito').append(" " + value)
+        type: 'post',
+        data:{
+            carrito: carrito.val()
+        },
+        url: 'application/controllers/caja/controller_addToCart.php',
+        success: (res) => {
+            if (res == '1') {
+                alertify.success("Producto añadido correctamente al carrito")
+                setTimeout(() => {
+                    //poner algo                    
+                }, 1200)
+            } else
+                alertify.error("Algo salió mal, intente de nuevo")
         }
     })
 }
-
-function verCarrito() {
-    //bodyCarrito
-    $.ajax({
-        url: 'application/controllers/caja/controller_getCart.php',
-        success: function (res) {
-            $('#carrito').empty()
-            $('#carrito').append(res)
-        }
-    })
-}
-
-$('#agregarBtn').on('click', function () {
-    alert("hola mundo xD")
-})
