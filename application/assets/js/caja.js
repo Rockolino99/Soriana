@@ -3,6 +3,7 @@ $(document).ready(() => {
     $('#table_listaProductos').on('draw.dt', function () {
         $('[data-toggle="tooltip"]').tooltip();
     });
+    localStorage.removeItem('carrito')
 })
 
 function verTabla() {
@@ -48,7 +49,7 @@ function verTabla() {
 function getDataProductos(tbody, table) {
     $(tbody).on('change', '#cantidadVP', function () { //Editar
         var data = table.row($(this).parents('tr')).data()
-        //alert("Actual:" + $(this).val() + ", max: " + data.cantidad)
+        
         if (parseInt(data.cantidad) == 0) {
             swal({
                 icon: 'info',
@@ -78,7 +79,6 @@ function getDataProductos(tbody, table) {
                 buttons: false,
                 timer: 2000
             })
-            alert(data.cantidad)
             $(this).val(data.cantidad)
             return
         }
@@ -103,15 +103,36 @@ function getDataAgregarCarrito(tbody, table) {
 
         //var datos = $(this).siblings()[0].value
         var cantidad = $(this).parents('td').siblings()[5].children[0].value
-        alert(cantidad)
-        //Agregar carrito
-        var carrito = {
-            data: data,
-            piezas: cantidad
+        
+        if(cantidad > 0) {
+            //Agregar carrito
+            let carrito = []
+            var item = {
+                "data": data,
+                "cantidad": cantidad
+            }
+
+            carrito = JSON.parse(localStorage.getItem('carrito'))
+            if(carrito == null)
+                carrito = []
+
+            carrito.push(item)
+            //Datos se van al localStorage
+            localStorage.setItem('carrito', JSON.stringify(carrito));
+
+            $.ajax({
+                type: 'post',
+                data: {carrito: carrito},
+                url: 'application/controllers/caja/controller_addToCart.php',
+                success: response => {
+                    $('#carrito').empty()
+                    $('#carrito').append(response)
+                },
+                error: () => {
+                    alert("mal")
+                }
+            })
         }
-        //console.log(carrito)
-        //Datos se van al localStorage
-        localStorage.setItem('carrito', JSON.stringify(carrito));
 
     })
 }

@@ -22,3 +22,12 @@ section#one {
 #table_listaProductos {
     width: 100%;
 }
+
+#carrito {
+    height: 80vh;
+    padding: 20px;
+}
+
+#carrito h2 {
+    text-align: center;
+}
