@@ -48,7 +48,9 @@ function verTabla() {
 function getDataProductos(tbody, table) {
     $(tbody).on('change', '#cantidadVP', function () { //Editar
         var data = table.row($(this).parents('tr')).data()
-        //alert("Actual:" + $(this).val() + ", max: " + data.cantidad)
+        data.cantidad = parseInt(data.cantidad)
+        cantidad = parseInt($(this).val())
+        alert("Actual:" + cantidad + ", max: " + data.cantidad)
         if (data.cantidad == 0) {
             swal({
                 icon: 'info',
@@ -71,18 +73,22 @@ function getDataProductos(tbody, table) {
             return
         }
 
-        if ($(this).val() > data.cantidad) {
+        if (cantidad > data.cantidad) {
+            alert(typeof $(this).val())
+            alert(typeof data.cantidad)
+            alert(cantidad > data.cantidad)
             swal({
                 icon: 'warning',
                 text: '¡No hay más productos!',
                 buttons: false,
                 timer: 2000
             })
+            alert(data.cantidad)
             $(this).val(data.cantidad)
             return
         }
 
-        if ($(this).val() < 1) {
+        if (cantidad < 1) {
             swal({
                 icon: 'warning',
                 text: '¡Debes elegir por lo menos un producto!',
@@ -98,10 +104,13 @@ function getDataProductos(tbody, table) {
 
 function getDataAgregarCarrito(tbody, table) {
     $(tbody).on('click', '#agregarBtn', function () { //Agregar Cart
+        var row = table.row($(this).parents('tr'))
+        console.log("row:" + row)
         var data = table.row($(this).parents('tr')).data()
-        alert(":v")
-
+        //alert(":v")
+        console.log(data)
         //Agregar carrito
+
         $('#nombreAgregar').val(data.nombre)
         $('#precioAgregar').val(data.precio)
         $('#cantidadAgregar').val(data.cantidad)
