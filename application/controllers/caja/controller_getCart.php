@@ -18,7 +18,7 @@ if ($stmt->rowCount() > 0) {
         <div class="articulo">
             <div class="card">
                 <div class="card-body">
-                <button type="button" class="close font-weight-dark" onclick="dropCart(<?php echo $row['idCarrito'] ?>)">×</button>
+                <button type="button" class="close font-weight-dark">×</button>
                 <br>
                 <h5 class="card-title" style="text-align: center;"><?php echo "$row[nombre]"; ?></h5>
                 <br>

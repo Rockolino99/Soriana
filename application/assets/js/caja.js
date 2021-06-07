@@ -123,7 +123,7 @@ function getCarrito(){
     $.ajax({
         type: 'post',
         data:{
-            carrito: carrito.val()
+            carrito: carrito
         },
         url: 'application/controllers/caja/controller_addToCart.php',
         success: (res) => {
