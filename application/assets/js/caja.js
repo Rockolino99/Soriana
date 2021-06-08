@@ -104,6 +104,8 @@ function getDataAgregarCarrito(tbody, table) {
         //var datos = $(this).siblings()[0].value
         var cantidad = $(this).parents('td').siblings()[5].children[0].value
         
+        let cant = cantidad
+        
         if(cantidad > 0) {
             //Agregar carrito
             let carrito = []
@@ -115,6 +117,17 @@ function getDataAgregarCarrito(tbody, table) {
             carrito = JSON.parse(localStorage.getItem('carrito'))
             if(carrito == null)
                 carrito = []
+            else {
+                for(cart of carrito) {
+                    if(cart['data'].nombre == item['data'].nombre) {
+                        cant = parseInt(cant) + parseInt(cart['cantidad'])
+                    }
+                }
+            }
+            if(parseInt(cant) > parseInt(data.cantidad)) {
+                alert("CANTIDAD INSUFICIENTE")
+                return
+            }
 
             carrito.push(item)
             //Datos se van al localStorage
