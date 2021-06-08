@@ -73,7 +73,7 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
 function validateUsers(id, nombre) {
     pass = $('#pass'+id)
     if(pass.val() == "") {
-        alertify.error("Por favor, ingrese una contraseña para " + nombre)
+        toastr.error("Por favor, ingrese una contraseña para " + nombre)
         pass.focus()
         return
     }
@@ -87,9 +87,9 @@ function validateUsers(id, nombre) {
         url: 'application/controllers/seguridad/controller_setPass.php',
         success: res => {
             if(res == '1')
-                alertify.success('Contaseña cambiada exitosamente')
+                toastr.success('Contaseña cambiada exitosamente')
             else
-                alertify.error('Algo saló mal, intente de nuevo')
+                toastr.error('Algo saló mal, intente de nuevo')
         }
     })
 }
