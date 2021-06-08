@@ -27,7 +27,8 @@
         <div class="wrap col-4" id="carro">
             <h3 class="text-center mt-3">LISTA DE COMPRA</h3>
             <div class="card" id="carrito">
-                <h2>LISTA VACÍA</h2>
+
+                <!-- <h2>LISTA VACÍA</h2> -->
             </div>
         </div>
     </div>
