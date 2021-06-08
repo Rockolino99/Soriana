@@ -129,7 +129,7 @@ function getDataAgregarCarrito(tbody, table) {
                     $('#carrito').append(response)
                 },
                 error: () => {
-                    alert("mal")
+                    toastr.error("Algo saló mal")
                 }
             })
         }
@@ -149,12 +149,9 @@ function getCarrito(){
         url: 'application/controllers/caja/controller_addToCart.php',
         success: (res) => {
             if (res == '1') {
-                alertify.success("Producto añadido correctamente al carrito")
-                setTimeout(() => {
-                    //poner algo                    
-                }, 1200)
+                toastr.success("Producto añadido correctamente al carrito")
             } else
-                alertify.error("Algo salió mal, intente de nuevo")
+            toastr.error("Algo salió mal, intente de nuevo")
         }
     })
 }

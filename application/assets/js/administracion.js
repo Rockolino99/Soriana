@@ -49,12 +49,12 @@ function getAreas() {
 function validateUser() {
 	nombre = $('#nombreUser')
 	if (nombre.val() == '' || nombre.val() == null) {
-		alertify.error("Ingrese un nombre")
+		toastr.error("Ingrese un nombre")
 		nombre.focus()
 		return
 	}
 	if (nombre.val().trim().length < 1) {
-		alertify.error("Ingrese un nombre válido")
+		toastr.error("Ingrese un nombre válido")
 		nombre.focus()
 		nombre.val('')
 		return
@@ -62,27 +62,27 @@ function validateUser() {
 
 	username = $('#username')
 	if (username.val() == '' || username.val() == null) {
-		alertify.error("Ingrese un nombre de usuario")
+		toastr.error("Ingrese un nombre de usuario")
 		username.focus()
 		return
 	}
 
 	if (username.val().trim().length < 1) {
-		alertify.error("Ingrese un nombre de usuario válido")
+		toastr.error("Ingrese un nombre de usuario válido")
 		username.focus()
 		username.val('')
 		return
 	}
 
 	if (username.val().indexOf(' ') > -1) {
-		alertify.error("El nombre de usuario no puede tener espacios")
+		toastr.error("El nombre de usuario no puede tener espacios")
 		username.focus()
 		return
 	}
 
 	area = $('#selectArea').find(":selected")
 	if (area.val() == 0) {
-		alertify.error("Seleccione un área")
+		toastr.error("Seleccione un área")
 		$('#selectArea').focus()
 		return
 	}
@@ -97,13 +97,13 @@ function validateUser() {
 		url: 'application/controllers/administracion/controller_newUsuario.php',
 		success: (res) => {
 			if (res) {
-				alertify.success("Usuario registrado correctamente")
+				toastr.success("Usuario registrado correctamente")
 				$(nombre).val('')
 				$(username).val('')
 				$('#selectArea').val(0)
 				getUsersList()
 			} else
-				alertify.error("Algo salió mal, intente de nuevo")
+				toastr.error("Algo salió mal, intente de nuevo")
 		}
 	})
 }
@@ -123,26 +123,27 @@ function getUsersList() {
 }
 
 function dropUser(i) {
-	alertify.confirm('Eliminar usuario', '¿Desea eliminar a ' + $('#user' + i).text() + '?',
-		function () { //Yes
-			$.ajax({
-				type: 'post',
-				data: {
-					idUsuario: i
-				},
-				url: 'application/controllers/administracion/controller_dropUser.php',
-				success: function (data) {
-					if (data == '1') {
-						alertify.success("Eliminación exitosa")
-						getUsersList()
-					} else
-						alertify.error("Algo salió mal, intente de nuevo")
-				}
+	toastr.warning("<br/><button type='button' id='confirmationUser' class='btn btn-light clear'>Eliminar</button>",
+		'¿Desea eliminar a ' + $('#user' + i).text() + '?', {
+		onShown: function (toast) {
+			$("#confirmationUser").click(function(){
+				$.ajax({
+					type: 'post',
+					data: {
+						idUsuario: i
+					},
+					url: 'application/controllers/administracion/controller_dropUser.php',
+					success: function (data) {
+						if (data == '1') {
+							toastr.success("Eliminación exitosa")
+							getUsersList()
+						} else
+							toastr.error("Algo salió mal, intente de nuevo")
+					}
+				})
 			})
-		},
-		function () {
-			//Nel
-		});
+		}
+	})
 }
 
 function verTabla() {
@@ -205,55 +206,29 @@ function getDataEliminar(tbody, table) {
 	$(tbody).on('click', '#deleteBtn', function () { //Editar
 		var data = table.row($(this).parents('tr')).data()
 
-		/*swal({
-			title: "¿Eliminar producto?",
-			text: "¿Desea eliminar " + data.nombre + "?",
-			icon: "warning",
-			buttons: ["Cancelar", "Eliminar"],
-			dangerMode: true,
-		})
-		.then((willDelete) => {
-			if (willDelete) {
-				$.ajax({
-					type: 'post',
-					data: {idInventario: data.idInventario},
-					url: 'application/controllers/administracion/controller_dropInventario.php',
-					success: function(data) {
-						if(data == '1') {
-							alertify.success("Eliminación exitosa")
-							$("#table_listaInventario").dataTable().fnDestroy();
-							document.getElementById('table_listaInventario').removeChild(document.getElementById('table_listaInventario').lastChild)
-							setTimeout(() => {
-								verTabla()
-							}, 1200)
-						} else
-							alertify.error("Algo salió mal, intente de nuevo")
-					}
-				})
+	toastr.warning("<br/><button type='button' id='confirmationProduct' class='btn btn-light clear'>Eliminar</button>",
+		'¿Desea eliminar ' + data.nombre + '?', {
+			onShown: function (toast) {
+				$("#confirmationProduct").click(function(){
+					$.ajax({
+						type: 'post',
+						data: {idInventario: data.idInventario},
+						url: 'application/controllers/administracion/controller_dropInventario.php',
+						success: function(data) {
+							if(data == '1') {
+								toastr.success("Eliminación exitosa")
+								$("#table_listaInventario").dataTable().fnDestroy();
+								document.getElementById('table_listaInventario').removeChild(document.getElementById('table_listaInventario').lastChild)
+								setTimeout(() => {
+									verTabla()
+								}, 1200)
+							} else
+								toastr.error("Algo salió mal, intente de nuevo")
+						}
+					})
+				});
 			}
-		});*/
-		alertify.confirm('Eliminar producto', '¿Desea eliminar ' + data.nombre + '?',
-		function() {//Yes
-			$.ajax({
-				type: 'post',
-				data: {idInventario: data.idInventario},
-				url: 'application/controllers/administracion/controller_dropInventario.php',
-				success: function(data) {
-					if(data == '1') {
-						alertify.success("Eliminación exitosa")
-						$("#table_listaInventario").dataTable().fnDestroy();
-						document.getElementById('table_listaInventario').removeChild(document.getElementById('table_listaInventario').lastChild)
-						setTimeout(() => {
-							verTabla()
-						}, 1200)
-					} else
-						alertify.error("Algo salió mal, intente de nuevo")
-				}
-			})
-		}, function(){
-			//Nel
 		});
-
 	})
 }
 
@@ -262,13 +237,13 @@ $('#validateProveedor').on('click', function () {
 
 	if (nombre.val() == '' || nombre.val() == null) {
 		nombre.focus()
-		alertify.error("Ingrese un nombre")
+		toastr.error("Ingrese un nombre")
 		return
 	}
 	if (nombre.val().trim().length < 1) {
 		nombre.focus()
 		nombre.val('')
-		alertify.error("Ingrese un nombre válido")
+		toastr.error("Ingrese un nombre válido")
 		return
 	}
 
@@ -280,11 +255,11 @@ $('#validateProveedor').on('click', function () {
 		url: 'application/controllers/administracion/controller_addProveedor.php',
 		success: function (data) {
 			if (data == '1') {
-				alertify.success("Se agregó correctamente")
+				toastr.success("Se agregó correctamente")
 				nombre.val('')
 				getProveedores()
 			} else
-				alertify.error("Algo salió mal, intente de nuevo")
+				toastr.error("Algo salió mal, intente de nuevo")
 		}
 	})
 })
@@ -293,12 +268,12 @@ $('#newInventarioBtn').on('click', function () {
 	nombre = $('#nombreProducto')
 
 	if (nombre.val() == '' || nombre.val() == null) {
-		alertify.error("Ingrese un nombre")
+		toastr.error("Ingrese un nombre")
 		nombre.focus()
 		return
 	}
 	if (nombre.val().trim().length < 1) {
-		alertify.error("Ingrese un nombre válido")
+		toastr.error("Ingrese un nombre válido")
 		nombre.focus()
 		nombre.val('')
 		return
@@ -307,14 +282,14 @@ $('#newInventarioBtn').on('click', function () {
 	precio = $('#precioProducto')
 
 	if (precio.val() <= 0 || precio.val() == null) {
-		alertify.error("Ingrese un precio")
+		toastr.error("Ingrese un precio")
 		precio.focus()
 		precio.val(1)
 		return
 	}
 
 	if (isNaN(precio.val())) {
-		alertify.error("Ingrese un precio válido")
+		toastr.error("Ingrese un precio válido")
 		precio.focus()
 		precio.val(1)
 		return
@@ -323,14 +298,14 @@ $('#newInventarioBtn').on('click', function () {
 	cantidad = $('#cantidadProducto')
 
 	if (cantidad.val() <= 0 || cantidad.val() == null) {
-		alertify.error("Ingrese una cantidad")
+		toastr.error("Ingrese una cantidad")
 		cantidad.focus()
 		cantidad.val(1)
 		return
 	}
 
 	if (isNaN(cantidad.val())) {
-		alertify.error("Ingrese una cantidad válida")
+		toastr.error("Ingrese una cantidad válida")
 		cantidad.focus()
 		cantidad.val(1)
 		return
@@ -338,7 +313,7 @@ $('#newInventarioBtn').on('click', function () {
 
 	proveedor = $('#selectProveedor').find(':selected')
 	if (proveedor.val() == 0) {
-		alertify.error("Seleccione un proveedor")
+		toastr.error("Seleccione un proveedor")
 		$('#selectProveedor').focus()
 		return
 	}
@@ -354,7 +329,7 @@ $('#newInventarioBtn').on('click', function () {
 		url: 'application/controllers/administracion/controller_newProducto.php',
 		success: (res) => {
 			if (res == '1') {
-				alertify.success("Producto registrado correctamente")
+				toastr.success("Producto registrado correctamente")
 				$(nombre).val('')
 				$(precio).val('')
 				$(cantidad).val('')
@@ -365,7 +340,7 @@ $('#newInventarioBtn').on('click', function () {
 					verTabla()
 				}, 1200)
 			} else
-				alertify.error("Algo salió mal, intente de nuevo")
+				toastr.error("Algo salió mal, intente de nuevo")
 		}
 	})
 })
@@ -375,12 +350,12 @@ $('#editarBtn').on('click', function () {
 	nombre = $('#nombreEdit')
 
 	if (nombre.val() == '' || nombre.val() == null) {
-		alertify.error("Ingrese un nombre")
+		toastr.error("Ingrese un nombre")
 		nombre.focus()
 		return
 	}
 	if (nombre.val().trim().length < 1) {
-		alertify.error("Ingrese un nombre válido")
+		toastr.error("Ingrese un nombre válido")
 		nombre.focus()
 		nombre.val('')
 		return
@@ -389,14 +364,14 @@ $('#editarBtn').on('click', function () {
 	precio = $('#precioEdit')
 
 	if (precio.val() <= 0 || precio.val() == null) {
-		alertify.error("Ingrese un precio")
+		toastr.error("Ingrese un precio")
 		precio.focus()
 		precio.val(1)
 		return
 	}
 
 	if (isNaN(precio.val())) {
-		alertify.error("Ingrese un precio válido")
+		toastr.error("Ingrese un precio válido")
 		precio.focus()
 		precio.val(1)
 		return
@@ -405,14 +380,14 @@ $('#editarBtn').on('click', function () {
 	cantidad = $('#cantidadEdit')
 
 	if (cantidad.val() <= 0 || cantidad.val() == null) {
-		alertify.error("Ingrese una cantidad")
+		toastr.error("Ingrese una cantidad")
 		cantidad.focus()
 		cantidad.val(1)
 		return
 	}
 
 	if (isNaN(cantidad.val())) {
-		alertify.error("Ingrese una cantidad válida")
+		toastr.error("Ingrese una cantidad válida")
 		cantidad.focus()
 		cantidad.val(1)
 		return
@@ -420,7 +395,7 @@ $('#editarBtn').on('click', function () {
 
 	proveedor = $('#selectEdit').find(':selected')
 	if (proveedor.val() == 0) {
-		alertify.error("Seleccione un proveedor")
+		toastr.error("Seleccione un proveedor")
 		$('#selectEdit').focus()
 		return
 	}
@@ -437,7 +412,7 @@ $('#editarBtn').on('click', function () {
 		url: 'application/controllers/administracion/controller_updateProducto.php',
 		success: (res) => {
 			if (res == '1') {
-				alertify.success("Producto editado correctamente")
+				toastr.success("Producto editado correctamente")
 				$("#table_listaInventario").dataTable().fnDestroy();
 				document.getElementById('table_listaInventario').removeChild(document.getElementById('table_listaInventario').lastChild)
 				setTimeout(() => {
@@ -445,7 +420,7 @@ $('#editarBtn').on('click', function () {
 					$('#listMain').click()
 				}, 1200)
 			} else
-				alertify.error("Algo salió mal, intente de nuevo")
+				toastr.error("Algo salió mal, intente de nuevo")
 		}
 	})
 })

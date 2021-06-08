@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html>
 
@@ -8,7 +11,7 @@
 	</head>
 
 	<header>
-		<!-- Bootstrap v3.3.7 -->
+		<!-- Bootstrap v4.0.0 -->
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
 		
@@ -48,13 +51,15 @@
 		<!-- SweetAlert -->
 		<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
-		<!-- Select2 -->
-		<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
-		<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+		<!-- Toastr -->
+		<link rel="stylesheet" href="./application/assets/pluggins/toastr/toastr.css">
+		<script src="./application/assets/pluggins/toastr/toastr.js"></script>
+
 
 	</header>
 
 	<body>
+		<?php if(isset($_SESSION['idUsuario'])) {  ?>
 		<div class="header">
 		  <a href="#" id="menu-action">
 		    <i class="fa fa-bars"></i>
@@ -97,6 +102,7 @@
 		          }
 		      ?>
 		</div>
+		<?php } else include('application/login/index.php'); ?>
 	</body>
 </html>
 
