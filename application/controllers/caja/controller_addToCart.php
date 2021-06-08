@@ -10,7 +10,7 @@ foreach ($carrito as $item) {
     echo $producto['nombre'] . " " . $item['cantidad'] . " $" . $producto['precio'] . "<br><br>";
     //echo $item->data->idProducto;
 
-    $subtotal += ($item['cantidad']*$item['precio']);
+    $subtotal += ($item['cantidad']*$producto['precio']);
 }
 ?>
 <div>
