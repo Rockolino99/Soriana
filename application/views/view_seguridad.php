@@ -10,7 +10,7 @@
                 <th scope="col">Nombre</th>
                 <th scope="col">Usuario</th>
                 <th scope="col">Contraseña</th>
-                <th scope="col">Tipo</th>
+                <th scope="col">Área</th>
                 <th scope="col">Opciones</th>
             </tr>
         </thead>

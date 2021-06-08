@@ -60,7 +60,7 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
         </td>
         <td>
             <div class="input-group mx-auto">
-                <button class="btn btn-success" title="Actualizar" onclick="validateUsers(<?php echo $i; ?>)"><i class="fas fa-save"></i></button>
+                <button class="btn btn-success" title="Actualizar" onclick="validateUsers(<?php echo $i; ?>, '<?php echo $row['nombre']; ?>')"><i class="fas fa-save"></i></button>
             </div>
         </td>
     </tr>
@@ -73,7 +73,7 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
 function validateUsers(id, nombre) {
     pass = $('#pass'+id)
     if(pass.val() == "") {
-        alertify.error("Por favor, ingrese una contraseña para " + $('#nombre'+id).val())
+        alertify.error("Por favor, ingrese una contraseña para " + nombre)
         pass.focus()
         return
     }
