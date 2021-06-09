@@ -35,6 +35,19 @@ class Seguridad {
         return $stmt->execute() ? 1 : 0;
     }
 
+    function getBossPass() {
+        $query = "SELECT idArea FROM supermarket.usuario
+                    WHERE pass = :pass";
+
+        $stmt = $this->conn->prepare($query);
+                
+        $this->pass = htmlspecialchars(strip_tags($this->pass));
+
+        $stmt->bindParam(":pass", $this->pass);
+
+        return $stmt->execute() ? $stmt : 0;
+    }
+
 }
 
 ?>

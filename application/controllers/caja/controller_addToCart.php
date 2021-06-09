@@ -36,7 +36,7 @@ if(isset($_POST['carrito']) && $_POST['carrito'] != []) {
         <tr>
             <td>Subtotal:</td>
             <td></td>
-            <td colspan="2" id="final"><?php echo "$" . $subtotal ?></td>
+            <td id="final"><?php echo "$" . $subtotal ?></td>
         </tr>
         <tr>
             <td>IVA: </td>

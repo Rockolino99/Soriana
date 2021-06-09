@@ -149,7 +149,7 @@ function dropItem(pos) {
             $("#confPass").on('keyup', event => {
                 if(event.key == 'Enter') {
                     pass = $("#confPass").val()
-                    $(this).closest('.toast').fadeOut(500)
+                    $(this).closest('.toast').fadeOut(200)
 
                     $.ajax({
                         type: 'post',
@@ -164,7 +164,7 @@ function dropItem(pos) {
                                 localStorage.setItem('carrito', JSON.stringify(carrito))
                                 getCarrito()
                             } else
-                                toastr.error("Algo salió mal, intente de nuevo")
+                                toastr.error("Contraseña inválida")
                         }
                     })//End ajax
                 }

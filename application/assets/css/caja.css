@@ -27,6 +27,8 @@ section#one {
     height: 80vh;
     padding: 20px;
     font-size: 20px;
+    overflow: auto;  
+    /*width: 100%;*/
 }
 
 #carrito h2 {
@@ -42,3 +44,4 @@ section#one {
 span > i {
     color: #372bb4;
 }
+

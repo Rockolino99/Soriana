@@ -4,17 +4,21 @@ session_start();
 <!DOCTYPE html>
 <html>
 	<?php
-		$mod = (isset($_GET['mod'])) ? $_GET['mod'] : "caja";
-		switch ($mod) {
-			case "caja":
-				$seccion = "CAJA";
-			break;
-			case "admin":
-				$seccion = "ADMINISTRACIÓN";
-			break; 
-			case "seguridad":
-				$seccion = "SEGURIDAD";
-			break;
+		if(isset($_SESSION['idUsuario'])) {
+			$mod = (isset($_GET['mod'])) ? $_GET['mod'] : "caja";
+			if($mod == 'admin' && $_SESSION['idArea'] != 4) $mod = "caja";
+			if($mod == 'seguridad' && $_SESSION['idArea'] != 3) $mod = "caja";
+			switch ($mod) {
+				case "caja":
+					$seccion = "CAJA";
+				break;
+				case "admin":
+					$seccion = "ADMINISTRACIÓN";
+				break; 
+				case "seguridad":
+					$seccion = "SEGURIDAD";
+				break;
+			}
 		}
 	?>
 	<head>
@@ -47,23 +51,6 @@ session_start();
   		<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.css">
   		<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.js"></script>
 
-  		<!-- Vue JS -->
-		<script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
-		<script src="https://cdn.jsdelivr.net/vue.resource/1.3.1/vue-resource.min.js"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.4.0/vue.js"></script>
-		<script src="https://cdn.jsdelivr.net/npm/vue-resource@1.3.5"></script>
-
-  		<!-- Alertify -->
-		<script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
-		<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertif
-		yjs@1.13.1/build/css/alertify.min.css"/>
-		<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/default.min.css"/>
-		<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/semantic.min.css"/>
-		<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/bootstrap.min.css"/>
-
-		<!-- SweetAlert -->
-		<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-
 		<!-- Toastr -->
 		<link rel="stylesheet" href="./application/assets/pluggins/toastr/toastr.css">
 		<script src="./application/assets/pluggins/toastr/toastr.js"></script>
@@ -79,14 +66,19 @@ session_start();
 		    <span>Ocultar</span>
 		  </a>
 		  <div class="logo">
-		    soriana  <i class="fas fa-chevron-right"></i>  <?php echo $seccion; ?>
+			  <span>soriana  <i class="fas fa-chevron-right" style="color: white;"></i>  <?php echo $seccion; ?></span>
+			  <span><?php echo $_SESSION['nombre']; ?></span>
 		  </div>
 		</div>
 		<div class="sidebar">
 		  <ul>
 		    <li><a href="index.php?mod=caja"><i class="fa fa-user"></i><span>Caja</span></a></li>
+			<?php if($_SESSION['idArea'] == 3) { ?>
+			<li><a href="index.php?mod=seguridad"><i class="fas fa-shield-alt"></i><span>Seguridad</span></a></li>
+			<?php }
+			if($_SESSION['idArea'] == 4) { ?>
 			<li><a href="index.php?mod=admin"><i class="fa fa-clipboard"></i><span>Administración</span></a></li>
-		    <li><a href="index.php?mod=seguridad"><i class="fas fa-shield-alt"></i><span>Seguridad</span></a></li>
+			<?php } ?>
 			<li><a href="index.php?mod=logout"><i class="fas fa-sign-out-alt"></i><span>Cerrar Sesión</span></a></li>
 		    </ul>
 		</div>
@@ -95,6 +87,8 @@ session_start();
 		<div class="main">
 			<?php
 		        $mod = (isset($_GET['mod'])) ? $_GET['mod'] : "caja";
+				if($mod == 'admin' && $_SESSION['idArea'] != 4) $mod = "caja";
+				if($mod == 'seguridad' && $_SESSION['idArea'] != 3) $mod = "caja";
 		          switch ($mod) {
 		              case "caja":
 		                  include_once('application/views/view_caja.php');

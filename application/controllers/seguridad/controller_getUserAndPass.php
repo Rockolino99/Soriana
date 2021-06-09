@@ -16,10 +16,10 @@ $tipos = array(
     "4" => "Administracion"
 );
 $colores = array(
-    "1" => "primary",
-    "2" => "warning",
-    "3" => "success",
-    "4" => "danger"
+    "1" => "background-color: #e74c3c; color: white;",
+    "2" => "background-color: #2980b9; color: white;",
+    "3" => "background-color: #27ae60; color: white;",
+    "4" => "background-color: #f1c40f; color: black;"
 );
 
 while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
@@ -55,7 +55,7 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
         </td>
         <td>
             <div class="input-group" style="height: 100%;">
-                <span class="badge badge-<?php echo $colores[$row['idArea']]; ?>" style="height: 100%;"><?php echo $tipos[$row['idArea']]; ?></span>
+                <span class="area" style="<?php echo $colores[$row['idArea']]; ?>"><?php echo $tipos[$row['idArea']]; ?></span>
             </div>
         </td>
         <td>
