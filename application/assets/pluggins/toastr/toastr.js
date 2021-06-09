@@ -490,5 +490,6 @@ toastr.options = {
     "showEasing": "swing",
     "hideEasing": "linear",
     "showMethod": "fadeIn",
-    "hideMethod": "fadeOut"
+    "hideMethod": "fadeOut",
+    "tapToDismiss": false
   }

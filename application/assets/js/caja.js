@@ -1,4 +1,5 @@
 $(document).ready(() => {
+    let carrito = []
     verTabla()
     $('#table_listaProductos').on('draw.dt', function () {
         $('[data-toggle="tooltip"]').tooltip();
@@ -51,45 +52,25 @@ function getDataProductos(tbody, table) {
         var data = table.row($(this).parents('tr')).data()
         
         if (parseInt(data.cantidad) == 0) {
-            swal({
-                icon: 'info',
-                text: '¡No quedan productos disponibles!',
-                buttons: false,
-                timer: 2000
-            })
+            toastr.warning('¡No quedan productos disponibles!')
             $(this).val('0')
             return
         }
 
         if (isNaN($(this).val()) || $(this).val() == '') {
-            swal({
-                icon: 'warning',
-                text: '¡Debes elegir una cantidad valida!',
-                buttons: false,
-                timer: 2000
-            })
+            toastr.info('¡Debes elegir una cantidad valida!')
             $(this).val('1')
             return
         }
 
         if (parseInt($(this).val()) > parseInt(data.cantidad)) {
-            swal({
-                icon: 'warning',
-                text: '¡No hay más productos!',
-                buttons: false,
-                timer: 2000
-            })
+            toastr.warning('¡No hay más productos!')
             $(this).val(data.cantidad)
             return
         }
 
         if (parseInt($(this).val()) < 1) {
-            swal({
-                icon: 'warning',
-                text: '¡Debes elegir por lo menos un producto!',
-                buttons: false,
-                timer: 2000
-            })
+            toastr.warning('¡Debes elegir por lo menos un producto!')
             $(this).val('1')
             return
         }
@@ -108,7 +89,6 @@ function getDataAgregarCarrito(tbody, table) {
         
         if(cantidad > 0) {
             //Agregar carrito
-            let carrito = []
             var item = {
                 "data": data,
                 "cantidad": cantidad
@@ -125,7 +105,7 @@ function getDataAgregarCarrito(tbody, table) {
                 }
             }
             if(parseInt(cant) > parseInt(data.cantidad)) {
-                alert("CANTIDAD INSUFICIENTE")
+                toastr.error("Cantidad insuficiente")
                 return
             }
 
@@ -133,38 +113,62 @@ function getDataAgregarCarrito(tbody, table) {
             //Datos se van al localStorage
             localStorage.setItem('carrito', JSON.stringify(carrito));
 
-            $.ajax({
-                type: 'post',
-                data: {carrito: carrito},
-                url: 'application/controllers/caja/controller_addToCart.php',
-                success: response => {
-                    $('#carrito').empty()
-                    $('#carrito').append(response)
-                },
-                error: () => {
-                    toastr.error("Algo saló mal")
-                }
-            })
+            getCarrito()
+        } else {
+            toastr.error("Debes añadir al menos 1 producto")
         }
 
     })
 }
 
 function getCarrito(){
-    var carrito = localStorage.getItem('carrito');
-    carrito = JSON.parse(carrito)
 
     $.ajax({
         type: 'post',
-        data:{
-            carrito: carrito
-        },
+        data: {carrito: carrito},
         url: 'application/controllers/caja/controller_addToCart.php',
-        success: (res) => {
-            if (res == '1') {
-                toastr.success("Producto añadido correctamente al carrito")
-            } else
-            toastr.error("Algo salió mal, intente de nuevo")
+        success: response => {
+            $('#carrito').empty()
+            $('#carrito').append(response)
+        },
+        error: () => {
+            toastr.error("Algo saló mal")
         }
+    })
+}
+
+function dropItem(pos) {
+        
+    toastr.info(
+        "<br/><div class='form-group'>" +
+        "<input type='password' id='confPass' class='form-control' placeholder='Contraseña'>" + 
+        "</div>",
+        'Ingresar clave de encargado',
+    {
+        onShown: function(toast) {
+            $("#confPass").on('keyup', event => {
+                if(event.key == 'Enter') {
+                    pass = $("#confPass").val()
+                    $(this).closest('.toast').fadeOut(500)
+
+                    $.ajax({
+                        type: 'post',
+                        data: {
+                            pass: pass
+                        },
+                        url: 'application/controllers/caja/controller_dropList.php',
+                        success: function(data) {
+                            if (data === "1") {
+                                toastr.success("Eliminación exitosa")
+                                carrito.splice(pos, 1)
+                                localStorage.setItem('carrito', JSON.stringify(carrito))
+                                getCarrito()
+                            } else
+                                toastr.error("Algo salió mal, intente de nuevo")
+                        }
+                    })//End ajax
+                }
+            })
+        } 
     })
 }

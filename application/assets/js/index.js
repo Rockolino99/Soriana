@@ -1,5 +1,5 @@
 (function($) {
-
+	//console.clear()
 	var tabs =  $(".tabs li a");
   
 	tabs.click(function() {
