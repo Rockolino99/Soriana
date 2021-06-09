@@ -22,8 +22,8 @@ session_start();
 		}
 	?>
 	<head>
-		<title>SORIANA</title>
-		<link rel="shortcut icon" href="application/assets/img/icons/favicon.ico" type="image/x-icon">
+		<title>VALLE ALEMÁN</title>
+		<link rel="shortcut icon" href="application/assets/img/icons/favicon.png" type="image/x-icon">
 		<meta charset='utf-8' />
 	</head>
 
@@ -66,7 +66,7 @@ session_start();
 		    <span>Ocultar</span>
 		  </a>
 		  <div class="logo">
-			  <span>soriana  <i class="fas fa-chevron-right" style="color: white;"></i>  <?php echo $seccion; ?></span>
+			  <span><img src="application/assets/img/logochido.png" width="140px"><i class="fas fa-chevron-right" style="color: white;"></i>  <?php echo $seccion; ?></span>
 			  <span><?php echo $_SESSION['nombre']; ?></span>
 		  </div>
 		</div>
