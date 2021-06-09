@@ -45,3 +45,10 @@ span > i {
     color: #372bb4;
 }
 
+.btn-finnish {
+    width: 100%;
+    margin-top: 20px;
+    background-color: #372bb4;
+    color: white;
+    padding: 10px;
+}

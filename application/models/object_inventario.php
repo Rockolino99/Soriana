@@ -84,6 +84,22 @@ class Inventario {
 
         return $stmt->execute() ? 1 : 0;
     }
+
+    function restProductos() {
+        $query = "UPDATE supermarket.inventario
+                  SET cantidad = cantidad - :cantidad
+                  WHERE idInventario = :idInventario";
+        
+        $stmt = $this->conn->prepare($query);
+        
+        $this->idInventario = htmlspecialchars(strip_tags($this->idInventario));
+        $this->cantidad = htmlspecialchars(strip_tags($this->cantidad));
+        
+        $stmt->bindParam(":idInventario", $this->idInventario);
+        $stmt->bindParam(":cantidad", $this->cantidad);
+
+        return $stmt->execute() ? '1' : '0';
+    }
 }
 
 ?>

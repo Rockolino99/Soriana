@@ -220,7 +220,7 @@ function getDataEliminar(tbody, table) {
 								$("#table_listaInventario").dataTable().fnDestroy();
 								document.getElementById('table_listaInventario').removeChild(document.getElementById('table_listaInventario').lastChild)
 								setTimeout(() => {
-									verTabla()
+									location.reload()
 								}, 1200)
 							} else
 								toastr.error("Algo salió mal, intente de nuevo")
@@ -337,7 +337,7 @@ $('#newInventarioBtn').on('click', function () {
 				$("#table_listaInventario").dataTable().fnDestroy();
 				document.getElementById('table_listaInventario').removeChild(document.getElementById('table_listaInventario').lastChild)
 				setTimeout(() => {
-					verTabla()
+					location.reload()
 				}, 1200)
 			} else
 				toastr.error("Algo salió mal, intente de nuevo")
@@ -416,8 +416,7 @@ $('#editarBtn').on('click', function () {
 				$("#table_listaInventario").dataTable().fnDestroy();
 				document.getElementById('table_listaInventario').removeChild(document.getElementById('table_listaInventario').lastChild)
 				setTimeout(() => {
-					verTabla()
-					$('#listMain').click()
+					location.reload()
 				}, 1200)
 			} else
 				toastr.error("Algo salió mal, intente de nuevo")

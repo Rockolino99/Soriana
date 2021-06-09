@@ -28,7 +28,7 @@ function verTabla() {
                 "data": "nomProveedor"
             },
             {
-                "defaultContent": "<input type='number' class='form-controls' value='0' id='cantidadVP' style='width:70px;' required>"
+                "defaultContent": "<input type='number' class='form-control' value='0' id='cantidadVP' style='width:70px;' required min='0'>"
             },
             {
                 "defaultContent": "<div style='display: flex; flex-wrap: no-wrap; justify-content: center;'>" +
@@ -50,6 +50,7 @@ function verTabla() {
 function getDataProductos(tbody, table) {
     $(tbody).on('change', '#cantidadVP', function () { //Editar
         var data = table.row($(this).parents('tr')).data()
+        console.log(data)
         
         if (parseInt(data.cantidad) == 0) {
             toastr.warning('¡No quedan productos disponibles!')
@@ -171,4 +172,50 @@ function dropItem(pos) {
             })
         } 
     })
+}
+
+function endVenta() {
+    $(this).closest('.toast').remove()
+    toastr.info("<br/><button type='button' id='confirmationFinish' class='btn btn-light clear'>Finalizar</button>",
+		'¿Desea finalizar la venta?', {
+			onShown: function (toast) {
+				$("#confirmationFinish").click(function(){
+                    $(this).closest('.toast').remove()
+					$.ajax({
+						type: 'post',
+						data: {carrito: carrito, idUsuario: $('#idUsuario').val()},
+						url: 'application/controllers/caja/controller_endVenta.php',
+						success: function(data) {
+                            console.clear()
+                            console.log(data)
+                            
+							if(data == '1') {
+                                
+								toastr.success("¡GRACIAS! Vuelva pronto")
+								$("#table_listaProductos").dataTable().fnDestroy();
+								document.getElementById('table_listaProductos').removeChild(document.getElementById('table_listaProductos').lastChild)
+
+                                var contenido = $('#carrito')[0].innerHTML
+                                var contenidoOriginal= document.body.innerHTML;
+                                document.body.innerHTML = contenido;
+                                window.print();
+                                document.body.innerHTML = contenidoOriginal;
+
+                                location.reload()
+                                /*localStorage.removeItem('carrito')
+                                carrito = []
+                                getCarrito()
+
+								verTabla()*/
+
+							} else
+								toastr.error("Algo salió mal, intente de nuevo")
+                        
+						}
+					})//end ajax
+
+				});
+			}
+		});
+
 }

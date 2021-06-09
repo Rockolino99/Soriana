@@ -51,6 +51,8 @@ if(isset($_POST['carrito']) && $_POST['carrito'] != []) {
             <td id="final"> <?php echo "$" . $total ?></td>
         </tr>
     </table>
+
+    <button onclick="endVenta()" class="btn-finnish">FINALIZAR VENTA</button>
 </div>
 
 <?php

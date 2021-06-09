@@ -106,6 +106,8 @@ session_start();
 		      ?>
 		</div>
 		<?php } else include('application/login/index.php'); ?>
+
+		<input type="hidden" value="<?php echo $_SESSION['idUsuario']; ?>" id="idUsuario">
 	</body>
 </html>
 
