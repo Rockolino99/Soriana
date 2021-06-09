@@ -38,3 +38,7 @@ section#one {
     width: 212px;
     text-align:right;
 }
+
+span > i {
+    color: #372bb4;
+}

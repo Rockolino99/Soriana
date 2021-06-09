@@ -12,7 +12,7 @@
                                 <tr>
                                     <th>ID</th>
                                     <th>Nombre</th>
-                                    <th>Cantidad</th>
+                                    <th>Existencia</th>
                                     <th>Precio</th>
                                     <th>Proveedor</th>
                                     <th style="width: 90px;">Piezas</th>

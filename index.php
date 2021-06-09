@@ -3,7 +3,20 @@ session_start();
 ?>
 <!DOCTYPE html>
 <html>
-
+	<?php
+		$mod = (isset($_GET['mod'])) ? $_GET['mod'] : "caja";
+		switch ($mod) {
+			case "caja":
+				$seccion = "CAJA";
+			break;
+			case "admin":
+				$seccion = "ADMINISTRACIÓN";
+			break; 
+			case "seguridad":
+				$seccion = "SEGURIDAD";
+			break;
+		}
+	?>
 	<head>
 		<title>SORIANA</title>
 		<link rel="shortcut icon" href="application/assets/img/icons/favicon.ico" type="image/x-icon">
@@ -66,14 +79,13 @@ session_start();
 		    <span>Ocultar</span>
 		  </a>
 		  <div class="logo">
-		    soriana
+		    soriana  <i class="fas fa-chevron-right"></i>  <?php echo $seccion; ?>
 		  </div>
 		</div>
 		<div class="sidebar">
 		  <ul>
 		    <li><a href="index.php?mod=caja"><i class="fa fa-user"></i><span>Caja</span></a></li>
 			<li><a href="index.php?mod=admin"><i class="fa fa-clipboard"></i><span>Administración</span></a></li>
-		    <li><a href="index.php?mod=mant"><i class="fa fa-tools"></i><span>Mantenimiento</span></a></li>
 		    <li><a href="index.php?mod=seguridad"><i class="fas fa-shield-alt"></i><span>Seguridad</span></a></li>
 			<li><a href="index.php?mod=logout"><i class="fas fa-sign-out-alt"></i><span>Cerrar Sesión</span></a></li>
 		    </ul>
@@ -89,9 +101,6 @@ session_start();
 		              break;
 		              case "admin":
 		                  include('application/views/view_administracion.php');
-		              break; 
-		              case "mant":
-		                  include('application/views/view_mantenimiento.php');
 		              break; 
 		              case "seguridad":
 		                  include('application/views/view_seguridad.php');

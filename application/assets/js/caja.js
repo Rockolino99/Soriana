@@ -32,7 +32,7 @@ function verTabla() {
             {
                 "defaultContent": "<div style='display: flex; flex-wrap: no-wrap; justify-content: center;'>" +
                     "<span data-toggle='tooltip' data-placement='top' title='Agregar'" + //Agregar
-                    "<i class='fas fa-shopping-cart' id='agregarBtn' style='cursor: pointer; padding: 3px; font-size: 20px;'></i>" +
+                    "<i class='fas fa-shopping-cart' id='agregarBtn' style='cursor: pointer; padding: 3px; font-size: 20px; color: #372bb4;'></i>" +
                     "</span>" + "</div>"
             }
         ],
