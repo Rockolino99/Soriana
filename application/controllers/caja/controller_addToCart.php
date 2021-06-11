@@ -52,7 +52,7 @@ if(isset($_POST['carrito']) && $_POST['carrito'] != []) {
         </tr>
     </table>
 
-    <button onclick="endVenta()" class="btn-finnish">FINALIZAR VENTA</button>
+    <button onclick="endVenta()" class="btn btn-block btn-finnish">FINALIZAR VENTA</button>
 </div>
 
 <?php
